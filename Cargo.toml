@@ -1,0 +1,21 @@
+[package]
+name = "fromdir"
+version = "0.1.0"
+edition = "2024"
+description = """(cd "$1" && shift && exec "$@")"""
+authors = ["Greg"]
+
+[dependencies]
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "z"
+panic = "abort"
+strip = true
+
+[profile.dev.package."*"]
+debug = true
+
+[profile.test]
+debug = true
